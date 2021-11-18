@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import React, {useState, useLayoutEffect} from 'react';
-import {storageSave,storageGet,storageRemove} from "./services/storage"
+import React, {useState , useLayoutEffect} from 'react';
+import {storageSave,storageGet,storageRemove} from "./services/Storage"
 
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
   const handleLembreme = (e)=>{
     setLembreme(e.target.checked)
 
-    if(e.target.checked == true){
+    if(e.target.checked === true){
       storageSave("email",email)
       storageSave("password",password)
     }else{
@@ -51,7 +51,7 @@ function App() {
           variant="outlined" 
           fullWidth
           value={email}
-          onchange={(e)=> setEmail(e.target.value)}
+          onChange={(e)=> setEmail(e.target.value)}
           />
         </Grid>
         <Grid item xs={3}></Grid>
@@ -64,7 +64,7 @@ function App() {
           variant="outlined" 
           fullWidth
           value={password}
-          onchange={(e)=> setPassword(e.target.value)}
+          onChange={(e)=> setPassword(e.target.value)}
           />
         </Grid>
         <Grid item xs={3}></Grid>
