@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { HashRouter, Switch , Route, Redirect} from "react-router-dom"
 import {isAuthenticated} from './services/Firebase'
 import Login from "./views/Login"
-import Menu from "./views/Menu"
+import Home from "./views/Home"
+import Menu from './components/Menu';
 function App() {
 
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -10,6 +11,7 @@ function App() {
       {...rest}
       render={props => isAuthenticated() ? (
         <>
+          <Menu/>
           <Component {...props} />
         </>
       ) : (
@@ -25,7 +27,7 @@ function App() {
     <HashRouter>
       <Switch>
         <Route path="/" exact={true} component={Login} />
-        <PrivateRoute path="/menu" component={Menu} />
+        <PrivateRoute path="/home" component={Home} />
         <Route path="*" component={Login} />
       </Switch>
     </HashRouter>

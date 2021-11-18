@@ -7,9 +7,10 @@ import Checkbox from '@mui/material/Checkbox';
 import React, {useState , useLayoutEffect} from 'react';
 import {storageSave,storageGet,storageRemove} from "../services/Storage"
 import {login} from "../services/Firebase"
+import {useHistory} from "react-router-dom"
 
 function Login() {
-
+  let history = useHistory();
   const [lembreme, setLembreme] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -40,7 +41,7 @@ function Login() {
   const efetuarLogin= async()=>{
 
     login(email,password)
-    .then(retorno=>console.log(retorno))
+    .then(retorno=>history.push("/home"))
     .catch(error=>console.log(error))
 
 
