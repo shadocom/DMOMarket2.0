@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+import { storageSave, storageRemove, storageGet } from "./Storage";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAxZl99s-pW18gqELS9tArIWqY5RAW-mg",
@@ -10,4 +12,23 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const firebase = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+export const login = (email,password) => {
+
+    return new Promise((resolve,reject)=>{
+        signInWithEmailAndPassword(auth,email,password)
+        .then((usuario)=>{
+            storageSave("TOKEN_KEY",usuario.user.uid)
+            resolve(true)
+        })
+        .catch((error)=>{
+            storageRemove("TOKEN_KEY")
+            reject(error)
+        })
+    }) 
+}
+
+export const isAuthenticated = () => storageGet("TOKEN_KEY") !== null;
+export const getToken = () =>storageGet("TOKEN_KEY")
