@@ -18,7 +18,7 @@ export default function Menu() {
             <Grid container spacing={1}>
             <Grid item xs={3}>
                     <Button onClick={()=> history.push("/home")} variant="outlined" fullWidth>
-                        Home
+                        Pagina Inicial
                     </Button>
                 </Grid>
             <Grid item xs={3}>
