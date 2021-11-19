@@ -55,8 +55,8 @@ export default function Home() {
                                         <TableCell align="left">{row.nomeitem}</TableCell>
                                         <TableCell align="left">{row.nomeserv}</TableCell>
                                         <TableCell align="left">{row.nometamer}</TableCell>
-                                        <TableCell align="left">{row.nomepreco}</TableCell>
-                                        <TableCell align="left">{row.nomequantia}</TableCell>
+                                        <TableCell align="left">{row.preco}</TableCell>
+                                        <TableCell align="left">{row.quantia}</TableCell>
                                         <TableCell align="left">
                                             <Button onClick={() => deletar(row.id)} >Deletar</Button>
 

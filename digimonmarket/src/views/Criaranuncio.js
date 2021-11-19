@@ -136,8 +136,11 @@ export default function Criaranuncio() {
                                         key={row.id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
-                                        <TableCell align="left">{row.endereco}</TableCell>
-                                        <TableCell align="left">{row.descricao}</TableCell>
+                                        <TableCell align="left">{row.nomeitem}</TableCell>
+                                        <TableCell align="left">{row.nomeserv}</TableCell>
+                                        <TableCell align="left">{row.nometamer}</TableCell>
+                                        <TableCell align="left">{row.preco}</TableCell>
+                                        <TableCell align="left">{row.quantia}</TableCell>
                                         <TableCell align="left">
                                             <Button onClick={() => deletar(row.id)} >Deletar</Button>
 

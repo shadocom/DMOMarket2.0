@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { storageSave, storageRemove, storageGet } from "./Storage";
-import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword} from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 
@@ -45,6 +45,18 @@ export const logoff = () => {
     
 }
 
+export const sigin = (email, password) => {
+    return new Promise((resolve, reject) => {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          resolve("Usuário Registrado!")
+        })
+        .catch(() => {
+          reject("Usuário já inserido no banco!")
+        })
+    })
+  }
+
 
 export const saveAnuncio = (anuncio) =>{
 
@@ -71,11 +83,11 @@ export const getAnuncio = () =>{
             querySnapshot.forEach((doc) => {
                 dados.push({
                     id:doc.id,
-                    nomeitem:doc.id.nomeitem,
-                    nometamer:doc.id.nometamer,
-                    preco:doc.id.preco,
-                    quantia:doc.id.quantia,
-                    nomeserv:doc.id.nomeserv
+                    nomeitem:doc.data().nomeitem,
+                    nometamer:doc.data().nometamer,
+                    preco:doc.data().preco,
+                    quantia:doc.data().quantia,
+                    nomeserv:doc.data().nomeserv
 
                 })
             });
