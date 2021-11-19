@@ -1,9 +1,15 @@
 import React, {useState, useLayoutEffect} from 'react'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
-import { saveAnuncio, getAnuncio } from '../services/Firebase';
+import { saveAnuncio, getAnuncio, deleteAnuncio } from '../services/Firebase';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 export default function Criaranuncio() {
 
@@ -24,15 +30,12 @@ export default function Criaranuncio() {
         setAnuncios(dados)
     }
 
-    const servidores = [
-        {label: 'Omegamon'},
-        {label: 'Lucemon'},
-        {label: 'Barbamon'},
-        {label: 'Lilithmon'},
-        {label: 'Belzemon'},
-        {label: 'Leviamon'},
-    ]
+    const deletar = async (id) => {
+        await deleteAnuncio(id)
+        await pegarAnuncios()
+    }
 
+    
     const save=()=>{
         let objeto={
             nomeitem: nomeitem,
@@ -57,7 +60,7 @@ export default function Criaranuncio() {
             <Grid container spacing={1}>
             <Grid item xs={2}>
                 <TextField 
-                type="nomeitem"  
+                type="text"  
                 id="outlined-basic" 
                 label="Nome do Item" 
                 variant="outlined" 
@@ -68,7 +71,7 @@ export default function Criaranuncio() {
             </Grid>
             <Grid item xs={2}>
                 <TextField 
-                type="nometamer"  
+                type="text"  
                 id="outlined-basic" 
                 label="Nome do Tamer" 
                 variant="outlined" 
@@ -79,7 +82,7 @@ export default function Criaranuncio() {
             </Grid>
             <Grid item xs={2}>
                 <TextField 
-                type="preco"  
+                type="text"  
                 id="outlined-basic" 
                 label="Preço" 
                 variant="outlined" 
@@ -90,7 +93,7 @@ export default function Criaranuncio() {
             </Grid>
             <Grid item xs={2}>
             <TextField 
-                type="quantia"  
+                type="text"  
                 id="outlined-basic" 
                 label="Quantidade Disponivel" 
                 variant="outlined" 
@@ -100,14 +103,14 @@ export default function Criaranuncio() {
                 />
             </Grid>
             <Grid item xs={4}>
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    options={servidores}
-                    sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="Servidor" />}
-                    value={nomeserv}
-                    onChange={(e)=> setNomeserv(e.target.value)}
+            <TextField 
+                type="text"  
+                id="outlined-basic" 
+                label="Servidor" 
+                variant="outlined" 
+                fullWidth
+                value={nomeserv}
+                onChange={(e)=> setNomeserv(e.target.value)}
                 />
             </Grid>
             <Grid item xs={4}>
@@ -115,6 +118,36 @@ export default function Criaranuncio() {
             Anunciar
             </Button>
             </Grid>
+                <Grid item xs={12}>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">Nome do Item</TableCell>
+                                    <TableCell align="left">Servidor</TableCell>
+                                    <TableCell align="left">Nome do Tamer</TableCell>
+                                    <TableCell align="left">Preço</TableCell>
+                                    <TableCell align="left">Quantidade</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {anuncios.map((row) => (
+                                    <TableRow
+                                        key={row.id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell align="left">{row.endereco}</TableCell>
+                                        <TableCell align="left">{row.descricao}</TableCell>
+                                        <TableCell align="left">
+                                            <Button onClick={() => deletar(row.id)} >Deletar</Button>
+
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
             </Grid>
         </div>
     )

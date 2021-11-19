@@ -27,11 +27,6 @@ export default function Menu() {
                     </Button>
                 </Grid>
                 <Grid item xs={3}>
-                    <Button variant="outlined" fullWidth>
-                        Ver anuncios
-                    </Button>
-                </Grid>
-                <Grid item xs={3}>
                     <Button variant="outlined" onClick={efetuarLogoff} fullWidth>
                         Logoff
                     </Button>

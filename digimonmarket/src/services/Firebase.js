@@ -89,6 +89,18 @@ export const getAnuncio = () =>{
 }
 
 
+export const deleteAnuncio = (id) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await deleteDoc(doc(db, 'anuncios', id));
+        resolve()
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+
+
 
 export const isAuthenticated = () => storageGet("TOKEN_KEY") !== null;
 export const getToken = () =>storageGet("TOKEN_KEY")
