@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useLayoutEffect} from 'react'
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
-import { saveAnuncio } from '../services/Firebase';
+import { saveAnuncio, getAnuncio } from '../services/Firebase';
 
 export default function Criaranuncio() {
 
@@ -12,6 +12,17 @@ export default function Criaranuncio() {
     const [nomeserv, setNomeserv] = useState("")
     const [preco, setPreco] = useState("")
     const [quantia, setQuantia] = useState("")
+    const [anuncios, setAnuncios] = useState([])
+
+    useLayoutEffect(() => {
+        pegarAnuncios()
+        
+    }, [])
+
+    const pegarAnuncios = async () => {
+        let dados = await getAnuncio()
+        setAnuncios(dados)
+    }
 
     const servidores = [
         {label: 'Omegamon'},

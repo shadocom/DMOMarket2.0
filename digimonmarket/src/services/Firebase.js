@@ -62,6 +62,31 @@ export const saveAnuncio = (anuncio) =>{
     
 }
 
+export const getAnuncio = () =>{
+
+    return new Promise(async(resolve, reject) => {
+        try {
+            const querySnapshot = await getDocs(collection(db, "anuncios"));
+            let dados = []
+            querySnapshot.forEach((doc) => {
+                dados.push({
+                    id:doc.id,
+                    nomeitem:doc.id.nomeitem,
+                    nometamer:doc.id.nometamer,
+                    preco:doc.id.preco,
+                    quantia:doc.id.quantia,
+                    nomeserv:doc.id.nomeserv
+
+                })
+            });
+            resolve(dados)
+        } catch (error) {
+            reject(error)
+        }  
+    })
+    
+    
+}
 
 
 
