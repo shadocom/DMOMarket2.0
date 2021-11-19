@@ -4,6 +4,7 @@ import {isAuthenticated} from './services/Firebase'
 import Login from "./views/Login"
 import Home from "./views/Home"
 import Menu from './components/Menu';
+import Criaranuncio from './views/Criaranuncio'
 function App() {
 
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -28,6 +29,7 @@ function App() {
       <Switch>
         <Route path="/" exact={true} component={Login} />
         <PrivateRoute path="/home" component={Home} />
+        <PrivateRoute path="/criaranuncio" component={Criaranuncio} />
         <Route path="*" component={Login} />
       </Switch>
     </HashRouter>

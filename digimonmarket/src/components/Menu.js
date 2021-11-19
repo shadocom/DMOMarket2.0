@@ -17,7 +17,12 @@ export default function Menu() {
         <div>
             <Grid container spacing={1}>
             <Grid item xs={3}>
-                    <Button variant="outlined" fullWidth>
+                    <Button onClick={()=> history.push("/home")} variant="outlined" fullWidth>
+                        Home
+                    </Button>
+                </Grid>
+            <Grid item xs={3}>
+                    <Button onClick={()=> history.push("/criaranuncio")}  variant="outlined" fullWidth>
                         Anunciar Itens
                     </Button>
                 </Grid>

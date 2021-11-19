@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { storageSave, storageRemove, storageGet } from "./Storage";
 import {getAuth, signInWithEmailAndPassword, signOut} from "firebase/auth";
+import { getFirestore } from "firebase/firestore"
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCAxZl99s-pW18gqELS9tArIWqY5RAW-mg",
@@ -14,6 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore();
 
 export const login = (email,password) => {
 
@@ -41,6 +44,26 @@ export const logoff = () => {
     })
     
 }
+
+
+export const saveAnuncio = (anuncio) =>{
+
+    return new Promise(async(resolve, reject) => {
+        try {
+            await addDoc(collection(db, "anuncios"), anuncio);
+            resolve()
+        } catch (error) {
+            reject(error)
+        }
+
+        
+    })
+    
+    
+}
+
+
+
 
 export const isAuthenticated = () => storageGet("TOKEN_KEY") !== null;
 export const getToken = () =>storageGet("TOKEN_KEY")
