@@ -32,7 +32,8 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Itens à Venda:</h1>
+            <h1>Digimon Masters Market</h1>
+            <h3>Itens à Venda:</h3>
             <Grid container spacing={1}>
                 <Grid item xs={12}>
                     <TableContainer component={Paper}>
