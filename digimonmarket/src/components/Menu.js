@@ -26,11 +26,16 @@ export default function Menu() {
                         Anunciar Itens
                     </Button>
                 </Grid>
-                <Grid item xs={3}>
-                    <Button variant="outlined" onClick={efetuarLogoff} fullWidth>
-                        Logoff
-                    </Button>
-                </Grid>
+            <Grid item xs={3}>
+                <Button variant="outlined" onClick={()=> history.push("/recados")} fullWidth>
+                    Ver Recados
+                </Button>
+            </Grid>
+            <Grid item xs={3}>
+                <Button variant="outlined" onClick={efetuarLogoff} fullWidth>
+                    Logoff
+                </Button>
+            </Grid>
 
             </Grid>
         </div>

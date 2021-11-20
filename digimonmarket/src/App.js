@@ -6,6 +6,7 @@ import Home from "./views/Home"
 import Menu from './components/Menu';
 import Criaranuncio from './views/Criaranuncio'
 import Footer from "./components/Footer"
+import Recados from "./views/Recados"
 function App() {
 
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -30,6 +31,7 @@ function App() {
     <HashRouter>
       <Switch>
         <Route path="/" exact={true} component={Login} />
+        <Route path="/recados" component={Recados} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/criaranuncio" component={Criaranuncio} />
         <Route path="*" component={Login} />

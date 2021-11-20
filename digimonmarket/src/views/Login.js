@@ -168,7 +168,7 @@ function Login() {
           Novo Registro
         </Button>
         <span> </span>
-        <Button variant="contained" size="small">
+        <Button variant="contained" size="small" onClick={()=> history.push("/recados")}>
           Recado ao dev
         </Button>
         </Grid>
