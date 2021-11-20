@@ -21,6 +21,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { getAnuncio } from '../services/Firebase';
+import Footer from "../components/Footer"
 
 const AnyReactComponent = ({ text }) =>
   <div>
@@ -166,6 +167,10 @@ function Login() {
         <Button variant="contained" size="small" onClick={novoRegistro}>
           Novo Registro
         </Button>
+        <span> </span>
+        <Button variant="contained" size="small">
+          Recado ao dev
+        </Button>
         </Grid>
         <Grid item xs={3}></Grid>
         <Grid item xs={12}>
@@ -200,8 +205,9 @@ function Login() {
         
         
         
-
+                <Footer/>
       </Grid>
+      
   );
 }
 

@@ -5,6 +5,7 @@ import Login from "./views/Login"
 import Home from "./views/Home"
 import Menu from './components/Menu';
 import Criaranuncio from './views/Criaranuncio'
+import Footer from "./components/Footer"
 function App() {
 
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -14,6 +15,7 @@ function App() {
         <>
           <Menu/>
           <Component {...props} />
+          <Footer/>
         </>
       ) : (
         <Redirect to={{ pathname: "/", state: { from: props.location } }} />
