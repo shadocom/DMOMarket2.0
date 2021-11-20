@@ -112,7 +112,47 @@ export const deleteAnuncio = (id) => {
     })
   }
 
+  export const saveRecado= (recado) =>{
 
+    return new Promise(async(resolve, reject) => {
+        try {
+            await addDoc(collection(db, "recados"), recado);
+            resolve()
+        } catch (error) {
+            reject(error)
+        }
+
+        
+    })
+    
+    
+}
+
+export const getRecado = () =>{
+
+    return new Promise(async(resolve, reject) => {
+        try {
+            const querySnapshot = await getDocs(collection(db, "recados"));
+            let dados = []
+            querySnapshot.forEach((doc) => {
+                dados.push({
+                    id:doc.id,
+                    nome:doc.data().nome,
+                    email:doc.data().email,
+                    assunto:doc.data().assunto,
+                    mensagem:doc.data().mensagem
+                    
+
+                })
+            });
+            resolve(dados)
+        } catch (error) {
+            reject(error)
+        }  
+    })
+    
+    
+}
 
 export const isAuthenticated = () => storageGet("TOKEN_KEY") !== null;
 export const getToken = () =>storageGet("TOKEN_KEY")
